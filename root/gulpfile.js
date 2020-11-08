@@ -66,8 +66,11 @@ gulp.task('js', () => {
 
 //watch
 gulp.task('watch', function () {
-  gulp.watch(paths.scss + '**/*.scss', ['scss']);
-  gulp.watch([paths.pug + '**/*.pug', '!' + paths.pug + '**/_*.pug'], ['pug']);
+  // gulp.watch(paths.scss + '**/*.scss', ['scss']);
+  // gulp.watch([paths.pug + '**/*.pug', '!' + paths.pug + '**/_*.pug'], ['pug']);
+  gulp.watch(paths.scss + '**/*.scss', gulp.task('sass'));
+  gulp.watch(paths.js + '**/*.js', gulp.task('js'));
+  gulp.watch([paths.pug + '**/*.pug', '!' + paths.pug + '**/_*.pug'], gulp.task('pug'));
 });
 
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', gulp.series(gulp.parallel('browser-sync', 'watch')));
