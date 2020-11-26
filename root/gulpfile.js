@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var pug = require('gulp-pug');
 var browserSync = require("browser-sync");
-const NewsAPI = require('newsapi');
+// const NewsAPI = require('newsapi');
 
 //setting : paths
 var paths = {
@@ -26,8 +26,8 @@ var pugOptions = {
 }
 
 //Sass
-gulp.task('scss', function () {
-  gulp.src(paths.scss + '**/*.scss')
+gulp.task('sass', function () {
+  return gulp.src([paths.scss + '**/*.scss'])
     .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(sass(sassOptions))
     .pipe(autoprefixer())
@@ -52,6 +52,7 @@ gulp.task('browser-sync', () => {
   gulp.watch(paths.js + "**/*.js", ['reload']);
   gulp.watch(paths.html + "**/*.html", ['reload']);
   gulp.watch(paths.css + "**/*.css", ['reload']);
+
 });
 gulp.task('reload', () => {
   browserSync.reload();
