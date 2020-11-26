@@ -44,15 +44,38 @@ $(function () {
                 $url = data[i].url,
                 $desc = data[i].description,
                 $category = data[i].category,
+                $thum = '';
+            if (data[i].image) {
                 $thum = data[i].image.thumbnail.contentUrl;
-            let li = '<li>' +
-                '<p><img src="' + $thum + '" /></p>' +
+            }
+            let li = '<li id="news-' + i + '" class="news-li FnArticle">' +
+                '<p class="news-thum"><img src="' + $thum + '" /></p>' +
                 '<div>' +
-                '<p>' + $name + '</p>' +
-                '<p>' + $category + '</p>' +
+                '<p class="news-cat">' + $category + '</p>' +
+                '<p class="news-name">' + $name + '</p>' +
+                '</div>' +
+                '<div style="display: none;">' +
+                '<p class="news-url">' + $url + '</p>' +
+                '<p class="news-desc">' + $desc + '</p>' +
                 '</div>' +
                 '</li>';
-            $('#news-wrap').prepend(li);
+            $('#news-wrap').append(li);
         }
+        // モーダル
+        let $article = document.getElementsByClassName('FnArticle');
+        for (let j = 0; j < $article.length; j++) {
+            $article[j].onclick = function () {
+                let $cnt = '<h2 class="modal-title">' + data[j].name + '</h2>' +
+                    '<p class="modal-category">' + data[j].category + '</p>' +
+                    '<p class="modal-description">' + data[j].description + '...</p>' +
+                    '<a class="modal-link" href="' + data[j].url + '" target="_blank">記事ページへ</a>';
+                $('#modal-content').append($cnt);
+                $('.popup').addClass('show').fadeIn();
+            }
+        }
+        $('#close').on('click', function () {
+            $('.popup').hide();
+            $('#modal-content').empty();
+        });
     });
 })

@@ -5,27 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css" media="screen"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
     <script src="js/func.js"></script>
   </head>
   <body>
     <header>
-      <div class="innerHeader hlpPt8 hlpPb8">
-        <p class="logoImg hlpPl8Sp"><img src="./img/logo.png" alt=""></p>
-        <p class="btnSelectGenre">
-          <select name="ジャンルで絞る">
-            <option value="" selected="selected">ジャンルで絞る</option>
-            <option value="SPORTS" selected="selected">SPORTS</option>
-            <option value="エンタメ" selected="selected">エンタメ</option>
-            <option value="" selected="selected">ジャンルで絞る</option>
-          </select>
+      <div class="innerHeader">
+        <div class="left-innerHeader">
+          <p class="logoImg"><img src="./img/logo.png" alt="news"></p>
+          <h1 class="ttl-page">最新のニュース</h1>
+        </div>
+        <p class="input-text">
+          <input class="FnSearch" type="text" placeholder="検索する">
         </p>
       </div>
     </header>
     <ul id="news-wrap"></ul>
     <footer>
-      <div class="innerFooter hlpPt16 hlpPb16">
-        <p class="hlpFs12">&copy; 2020 R.Sugi. All Right Reserved.</p>
+      <div class="innerFooter">
+        <p>&copy; 2020 R.Sugi. All Right Reserved.</p>
       </div>
     </footer>
+    <div class="popup">
+      <div class="content">
+        <div id="modal-content"></div>
+        <button id="close">CLOSE</button>
+      </div>
+    </div>
   </body>
 </html>
