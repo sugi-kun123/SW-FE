@@ -47,12 +47,17 @@ $(function () {
                 $thum = '';
             if (data[i].image) {
                 $thum = data[i].image.thumbnail.contentUrl;
+            } else if (data[i].provider) {
+                $thum = data[i].provider[0].image.thumbnail.contentUrl;
+            }
+            if (data[i].category = 'undefined') {
+                $category = '';
             }
             let li = '<li id="news-' + i + '" class="news-li FnArticle">' +
                 '<p class="news-thum"><img src="' + $thum + '" /></p>' +
                 '<div>' +
-                '<p class="news-cat">' + $category + '</p>' +
                 '<p class="news-name">' + $name + '</p>' +
+                '<p class="news-cat">' + $category + '</p>' +
                 '</div>' +
                 '<div style="display: none;">' +
                 '<p class="news-url">' + $url + '</p>' +
@@ -65,8 +70,12 @@ $(function () {
         let $article = document.getElementsByClassName('FnArticle');
         for (let j = 0; j < $article.length; j++) {
             $article[j].onclick = function () {
+                let $category = data[j].category;
+                if (data[j].category = 'undefined') {
+                    $category = '-';
+                }
                 let $cnt = '<h2 class="modal-title">' + data[j].name + '</h2>' +
-                    '<p class="modal-category">' + data[j].category + '</p>' +
+                    '<p class="modal-category">category : ' + $category + '</p>' +
                     '<p class="modal-description">' + data[j].description + '...</p>' +
                     '<a class="modal-link" href="' + data[j].url + '" target="_blank">記事ページへ</a>';
                 $('#modal-content').append($cnt);
